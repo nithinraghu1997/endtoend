@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment # Kubernetes resource kind we are creating
 metadata:
-  name: endtoend-deployment
+  name: endtoend1-deployment
 spec:
   selector:
     matchLabels:
-      app: endtoend
+      app: endtoend1
   replicas: 2 # Number of replicas that will be created for this deployment
   template:
     metadata:
       labels:
-        app: endtoende
+        app: endtoend1
     spec:
       containers:
-        - name: endtoend
-          image: jacksonricherd/endtoend:v1 # Image that will be used to containers in the cluster
+        - name: endtoend1
+          image: jacksonricherd/endtoend1:v1 # Image that will be used to containers in the cluster
           imagePullPolicy: Always
           ports:
             - containerPort: 8080 # The port that the container is running on in the cluster
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1 # Kubernetes API version
 kind: Service # Kubernetes resource kind we are creating
 metadata: # Metadata of the resource kind we are creating
-  name: endtoend-ssvc
+  name: endtoend1-ssvc
 spec:
   selector:
-    app: endtoend
+    app: endtoend1
   ports:
     - protocol: "TCP"
       port: 8080 # The port that the service is running on in the cluster
